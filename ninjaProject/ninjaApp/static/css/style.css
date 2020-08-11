@@ -1,0 +1,34 @@
+*{
+    background-color: antiquewhite;
+}
+
+.showred{
+    color: red;
+}
+.showgreen{
+    color: green;
+}
+
+#frame{
+    border: 1px solid black;
+    width: 300px;
+    display: inline-block;
+}
+
+#container{
+    display: flex;
+}
+
+.game{
+    display: inline-block;
+    width: 400px;
+    border: 1px solid black;
+    margin: 40px;
+    text-align: center;
+}
+
+#footer{
+    border: 1px solid black;
+    overflow-y: scroll;
+    
+}

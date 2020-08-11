@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Ninja Gold</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    </head>
+
+    <body>
+        <h1>Your Gold: <span id="frame">{{request.session.amount}}</span></h1>
+        <form action='/reset' method="POST">
+            {% csrf_token %}
+            <button type='submit'>Reset</button>
+        </form>
+
+        <div id="container">      
+            <form class="game" action='/process_money' method='POST'>
+                {% csrf_token %}
+                <h1>Farm</h1>
+                <h5>(earns 10-20 golds)</h5>
+                <input type='hidden' name='location' value='1001'>
+                <button type='submit'>Find Gold!</button>
+            </form>
+            <form class="game" action='/process_money' method='POST'>
+                {% csrf_token %}
+                <h1>Cave</h1>
+                <h5>(earns 5-10 golds)</h5>
+                <input type='hidden' name='location' value='1002'>
+                <button type='submit'>Find Gold</button>
+            </form>
+            <form class="game" action='/process_money' method='POST'>
+                {% csrf_token %}
+                <h1>House</h1>
+                <h5>(earns 2-5 golds)</h5>
+                <input type='hidden' name='location' value='1003'>
+                <button type='submit'>Find Gold</button>
+            </form>
+            <form class="game" action='/process_money' method='POST'>
+                {% csrf_token %}
+                <h1>Casino</h1>
+                <h5>(earns/take 0-50 golds)</h5>
+                <input type='hidden' name='location' value='1004'>
+                <button type='submit'>Find Gold</button>
+            </form>
+
+        </div>
+        
+        <h3>Activities:</h3>
+        <div id="footer">         
+            {% for activity in request.session.activities reversed %}
+                {% if 'lost' in activity %}
+                    <p class="showred">{{activity}}</p>
+                {% else %}
+                    <p class="showgreen">{{activity}}</p>
+            {% endif %}
+        {% endfor %}
+            <style>
+            /* width */
+            ::-webkit-scrollbar {
+              width: 10px;
+            }
+            
+            /* Track */
+            ::-webkit-scrollbar-track {
+              background: #f1f1f1; 
+            }
+             
+            /* Handle */
+            ::-webkit-scrollbar-thumb {
+              background: #888; 
+            }
+            
+            /* Handle on hover */
+            ::-webkit-scrollbar-thumb:hover {
+              background: #555; 
+            }
+            </style>
+           
+           
+        </div>
+        
+    </body>
+
+</html>
